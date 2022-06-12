@@ -60,11 +60,11 @@ will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in
 the getFinals data set*/
 
-getYears(fifaData, getFinals());
 
 function getYears(data, functionCB){
   const arrayOfPops = functionCB(data).map(years => years.Year);
-  console.log(arrayOfPops);
+  // console.log(arrayOfPops);
+  return arrayOfPops;
 }
 
 getYears(fifaData, getFinals);
@@ -81,10 +81,18 @@ getFinals from task 2 as an argument
 info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(data, functionCB) {
+    const arrayOfPops = functionCB(data).map(wins => wins["Win conditions"]);
+    // console.log(arrayOfPops);
+    for (let i = 0; i < arrayOfPops.length; i++){
+      if (arrayOfPops[i] === ""){
+        
+      }
+    }
+    return arrayOfPops;
 }
 
+getWinners(fifaData, getFinals);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
