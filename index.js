@@ -81,15 +81,26 @@ getFinals from task 2 as an argument
 info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */
 
+
+
 function getWinners(data, functionCB) {
-    const arrayOfPops = functionCB(data).map(wins => wins["Win conditions"]);
-    // console.log(arrayOfPops);
-    for (let i = 0; i < arrayOfPops.length; i++){
-      if (arrayOfPops[i] === ""){
-        
-      }
-    }
-    return arrayOfPops;
+  var winningTeamNames = [];
+  const filterData = functionCB(data).filter((worldCupWinners) => {
+    return worldCupWinners["Home Team Goals"] > worldCupWinners["Away Team Goals"];
+  })
+  const filterData2 = functionCB(data).filter((worldCupWinners2) => {
+    return worldCupWinners2["Away Team Goals"] > worldCupWinners2["Home Team Goals"];
+  })
+  for (let i = 0; i < filterData.length; i++){
+    winningTeamNames.push(filterData[i]["Home Team Name"]);
+  }
+  for (let i = 0; i < filterData2.length; i++){
+    winningTeamNames.push(filterData2[i]["Away Team Name"]);
+  }
+
+  console.log(winningTeamNames);
+  return winningTeamNames;
+
 }
 
 getWinners(fifaData, getFinals);
@@ -98,9 +109,12 @@ getWinners(fifaData, getFinals);
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinnersByYear to do the following:
 1. Receive an array as the first parameter that will take fifaData as an argument
-2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
-3. Receive a callback function as the third parameter that will take getYears from task 3 as an argument
-4. Receive a callback function as the fourth parameter that will take getWinners from task 4 as an argument
+2. Receive a callback function as the second parameter that will take
+getFinals from task 2 as an argument
+3. Receive a callback function as the third parameter that will take getYears
+from task 3 as an argument
+4. Receive a callback function as the fourth parameter that will take
+getWinners from task 4 as an argument
 5. Return an array of strings that say "In {year}, {country} won the world cup!"
 
 💡 HINT: the strings returned need to exactly match the string in step 4.
@@ -114,13 +128,17 @@ function getWinnersByYear(/* code here */) {
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following:
- 1. Receive a callback function in a parameter that will take getFinals (from task 2) as an argument and ensure you pass in the fifaData as its argument
+ 1. Receive a callback function in a parameter that will take getFinals
+ (from task 2) as an argument and ensure you pass in the fifaData as its
+ argument
 
  💡 HINT: Example of invocation: getAverageGoals(getFinals(fifaData));
 
- 2. Return the the average number of the total home team goals and away team goals scored per match and round to the second decimal place.
+ 2. Return the the average number of the total home team goals and away team
+ goals scored per match and round to the second decimal place.
 
- 💡 HINT: use .reduce, .toFixed (refer to MDN for syntax), and do this in 2 steps)
+ 💡 HINT: use .reduce, .toFixed (refer to MDN for syntax), and do this in 2
+ steps)
 
 
 */
@@ -135,7 +153,8 @@ function getAverageGoals(/* code here */) {
 /// 🥅 STRETCH 🥅 ///
 
 /* 💪💪💪💪💪 Stretch 1: 💪💪💪💪💪
-Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had.
+Create a function called `getCountryWins` that takes the parameters `data` and
+`team initials` and returns the number of world cup wins that country has had.
 
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
@@ -149,7 +168,9 @@ function getCountryWins(/* code here */) {
 
 
 /* 💪💪💪💪💪 Stretch 2: 💪💪💪💪💪
-Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
+Write a function called getGoals() that accepts a parameter `data` and returns
+the team with the most goals score per appearance (average goals for) in the
+World Cup finals */
 
 function getGoals(/* code here */) {
 
@@ -159,7 +180,9 @@ function getGoals(/* code here */) {
 
 
 /* 💪💪💪💪💪 Stretch 3: 💪💪💪💪💪
-Write a function called badDefense() that accepts a parameter `data` and calculates the team with the most goals scored against them per appearance (average goals against) in the World Cup finals */
+Write a function called badDefense() that accepts a parameter `data` and
+calculates the team with the most goals scored against them per appearance
+(average goals against) in the World Cup finals */
 
 function badDefense(/* code here */) {
 
