@@ -63,7 +63,7 @@ the getFinals data set*/
 
 function getYears(data, functionCB){
   const arrayOfPops = functionCB(data).map(years => years.Year);
-  // console.log(arrayOfPops);
+  console.log(arrayOfPops);
   return arrayOfPops;
 }
 
@@ -105,7 +105,7 @@ info on ties for a stretch goal.)
 function getWinners(data, functionCB) {
   var winningTeamNames = [];
   const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
-   winners["Away Team Name"] : winners["Home Team Name"]);
+   winners["Home Team Name"] : winners["Away Team Name"]);
   console.log(array);
   return array;
 }
@@ -120,8 +120,7 @@ as an argument
 2. Receive a callback function as the second parameter that will take
 getFinals from task 2 as an argument
 3. Receive a callback function as the third parameter that will
-take getYears
-from task 3 as an argument
+take getYears from task 3 as an argument
 4. Receive a callback function as the fourth parameter that will take
 getWinners from task 4 as an argument
 5. Return an array of strings that say "In {year}, {country} won
@@ -130,9 +129,14 @@ the world cup!"
 💡 HINT: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
-}
+function getWinnersByYear(data, getFinalsCB, getYearsCB, getWinnersCB) {
+  var winners = getWinnersCB(data, getFinalsCB);
+  var years = getYearsCB(data, getFinalsCB);
+  console.log(winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`));
+  return winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`);
+  }
+
+getWinnersByYear(fifaData, getFinals, getYears, getWinners);
 
 
 
