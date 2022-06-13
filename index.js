@@ -83,24 +83,31 @@ info on ties for a stretch goal.)
 
 
 
+// function getWinners(data, functionCB) {
+//   var winningTeamNames = [];
+//   const filterData = functionCB(data).filter((worldCupWinners) => {
+//     return worldCupWinners["Home Team Goals"] > worldCupWinners["Away Team Goals"];
+//   })
+//   const filterData2 = functionCB(data).filter((worldCupWinners2) => {
+//     return worldCupWinners2["Away Team Goals"] > worldCupWinners2["Home Team Goals"];
+//   })
+//   for (let i = 0; i < filterData.length; i++){
+//     winningTeamNames.push(filterData[i]["Home Team Name"]);
+//   }
+//   for (let i = 0; i < filterData2.length; i++){
+//     winningTeamNames.push(filterData2[i]["Away Team Name"]);
+//   }
+//
+//   console.log(winningTeamNames);
+//   return winningTeamNames;
+// }
+
 function getWinners(data, functionCB) {
   var winningTeamNames = [];
-  const filterData = functionCB(data).filter((worldCupWinners) => {
-    return worldCupWinners["Home Team Goals"] > worldCupWinners["Away Team Goals"];
-  })
-  const filterData2 = functionCB(data).filter((worldCupWinners2) => {
-    return worldCupWinners2["Away Team Goals"] > worldCupWinners2["Home Team Goals"];
-  })
-  for (let i = 0; i < filterData.length; i++){
-    winningTeamNames.push(filterData[i]["Home Team Name"]);
-  }
-  for (let i = 0; i < filterData2.length; i++){
-    winningTeamNames.push(filterData2[i]["Away Team Name"]);
-  }
-
-  console.log(winningTeamNames);
-  return winningTeamNames;
-
+  const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
+   winners["Away Team Name"] : winners["Home Team Name"]);
+  console.log(array);
+  return array;
 }
 
 getWinners(fifaData, getFinals);
@@ -108,14 +115,17 @@ getWinners(fifaData, getFinals);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinnersByYear to do the following:
-1. Receive an array as the first parameter that will take fifaData as an argument
+1. Receive an array as the first parameter that will take fifaData
+as an argument
 2. Receive a callback function as the second parameter that will take
 getFinals from task 2 as an argument
-3. Receive a callback function as the third parameter that will take getYears
+3. Receive a callback function as the third parameter that will
+take getYears
 from task 3 as an argument
 4. Receive a callback function as the fourth parameter that will take
 getWinners from task 4 as an argument
-5. Return an array of strings that say "In {year}, {country} won the world cup!"
+5. Return an array of strings that say "In {year}, {country} won
+the world cup!"
 
 💡 HINT: the strings returned need to exactly match the string in step 4.
  */
