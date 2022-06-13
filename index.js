@@ -157,11 +157,15 @@ Use the higher order function getAverageGoals to do the following:
 
 */
 
-function getAverageGoals(/* code here */) {
-    /* code here */
+function getAverageGoals(getFinalsCB) {
+  var finalsArray = getFinalsCB;
+  const reduceFinalsGoals = finalsArray.reduce((total, goals) => {
+    return total += goals["Home Team Goals"] + goals["Away Team Goals"];
+  }, 0);
+return (reduceFinalsGoals / finalsArray.length).toFixed(2);
  }
 
-
+getAverageGoals(getFinals());
 
 
 /// 🥅 STRETCH 🥅 ///
@@ -173,10 +177,8 @@ Create a function called `getCountryWins` that takes the parameters `data` and
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
-
-    /* code here */
-
+function getCountryWins(data, teamInitials) {
+  
 }
 
 
