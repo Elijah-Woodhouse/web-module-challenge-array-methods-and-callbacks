@@ -44,7 +44,7 @@ function getFinals(array) {
   const filterData = fifaData.filter((worldCupFinal) => {
     return worldCupFinal.Stage === 'Final';
   })
-  console.log(filterData);
+  //console.log(filterData);
   return filterData;
  }
 
@@ -63,7 +63,7 @@ the getFinals data set*/
 
 function getYears(data, functionCB){
   const arrayOfPops = functionCB(data).map(years => years.Year);
-  console.log(arrayOfPops);
+  //console.log(arrayOfPops);
   return arrayOfPops;
 }
 
@@ -106,7 +106,7 @@ function getWinners(data, functionCB) {
   var winningTeamNames = [];
   const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
    winners["Home Team Name"] : winners["Away Team Name"]);
-  console.log(array);
+  //console.log(array);
   return array;
 }
 
@@ -132,7 +132,7 @@ the world cup!"
 function getWinnersByYear(data, getFinalsCB, getYearsCB, getWinnersCB) {
   var winners = getWinnersCB(data, getFinalsCB);
   var years = getYearsCB(data, getFinalsCB);
-  console.log(winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`));
+  //console.log(winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`));
   return winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`);
   }
 
@@ -177,10 +177,32 @@ Create a function called `getCountryWins` that takes the parameters `data` and
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(data, teamInitials) {
-  
+//use Call back function for data parameter
+// get Finals goes into CB function as Data
+
+// function getWinners1(data, functionCB) {
+//   const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
+//    winners["Home Team Initials"] : winners["Away Team Initials"]);
+//    console.log(array);
+//   return array;
+// }
+//
+// getWinners1(fifaData, getFinals);
+
+function getCountryWins(data, functionCB, teamInitials) {
+  var counter = 0;
+  const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
+  winners["Home Team Initials"] : winners["Away Team Initials"]);
+  for (let i = 0; i < array.length; i++){
+    if (array[i] === teamInitials) {
+      counter += 1;
+    }
+  }
+  console.log(counter);
+  return counter;
 }
 
+getCountryWins(fifaData, getFinals, "FRG");
 
 
 /* 💪💪💪💪💪 Stretch 2: 💪💪💪💪💪
