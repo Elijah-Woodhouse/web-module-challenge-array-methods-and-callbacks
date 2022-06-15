@@ -44,9 +44,11 @@ function getFinals(array) {
   const filterData = fifaData.filter((worldCupFinal) => {
     return worldCupFinal.Stage === 'Final';
   })
-  //console.log(filterData);
+  console.log(filterData);
   return filterData;
  }
+
+ getFinals(fifaData);
 
 
 
@@ -103,7 +105,6 @@ info on ties for a stretch goal.)
 // }
 
 function getWinners(data, functionCB) {
-  var winningTeamNames = [];
   const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
    winners["Home Team Name"] : winners["Away Team Name"]);
   //console.log(array);
@@ -193,6 +194,7 @@ function getCountryWins(data, functionCB, teamInitials) {
   var counter = 0;
   const array = functionCB(data).map(winners => winners["Home Team Goals"] > winners["Away Team Goals"] ?
   winners["Home Team Initials"] : winners["Away Team Initials"]);
+  console.log(array);
   for (let i = 0; i < array.length; i++){
     if (array[i] === teamInitials) {
       counter += 1;
@@ -202,18 +204,31 @@ function getCountryWins(data, functionCB, teamInitials) {
   return counter;
 }
 
-getCountryWins(fifaData, getFinals, "FRG");
+getCountryWins(fifaData, getFinals, "URU");
 
 
 /* 💪💪💪💪💪 Stretch 2: 💪💪💪💪💪
-Write a function called getGoals() that accepts a parameter `data` and returns
-the team with the most goals score per appearance (average goals for) in the
-World Cup finals */
+Write a function called getGoals() that accepts a
+parameter `data` and returns
+the team with the most goals score per appearance
+(average goals for) in the World Cup finals */
 
-function getGoals(/* code here */) {
+// maybe take data from winning team name and put them through
+// this first function?
+/*
+create a loop to see if a team has played a game in the finals.
+If that specified team has played in the game then
+return the goals to a counter.
+display data in a new array as an object of:
+"team name" : # of goals scored averaged.
 
-    /* code here */
+Then use this function as a callback to getGoals function
+to see which team has scored the most goals.
+*/
 
+
+function getGoals(getFinalsCB){
+  const array = getFinalsCB.map();
 }
 
 
